@@ -4,7 +4,7 @@ import Search from './components/Searc';
 import { useState } from 'react';
 
 
-
+const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY
 
 
 function App() {
@@ -13,6 +13,14 @@ function App() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     console.log(word);
+    fetch(`https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   return (
